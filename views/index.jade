@@ -1,5 +1,13 @@
 extends layout
 
+block head
+  link(rel='stylesheet', href='/javascripts/vendor/bootstrap-css/css/bootstrap.css')
+
+  script(type='text/javascript', src='/javascripts/controllers/TasksController.js')
+
 block content
-  h1= title
-  p Welcome to #{title}
+  div.container
+    h1 DVTA
+    div(ng-controller="TasksController")
+      div(ng-repeat="task in tasks")
+        span {{task.name}} : {{task.count}}
