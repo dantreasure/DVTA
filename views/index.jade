@@ -9,5 +9,9 @@ block content
   div.container
     h1 DVTA
     div(ng-controller="TasksController")
-      div(ng-repeat="task in tasks")
+      div(ng-repeat="task in tasks | filter:selected")
         span {{task.name}} : {{task.count}}
+      hr
+      div
+        input(type="text" ng-model="selected" typeahead="task.name for task in tasks | filter:$viewValue | limitTo:8")
+

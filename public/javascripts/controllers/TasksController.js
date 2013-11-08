@@ -1,3 +1,4 @@
+angular.module('dvta', ['ui.bootstrap']);
 var TasksController = function ($scope){
   $scope.selected = undefined;
   $scope.tasks = [
