@@ -1,8 +1,52 @@
 body {
+  background-color: #FDC904 !important;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+.top{
+	
+	text-align: center;
+}
+	.main_title { 
+		color: #1E1F20;
+		font-family: 'Monoton', cursive; 
+		font-weight: 400; 
+		font-size: 200px;
+	}
+
+.task{
+	font-size: 35px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+}
+.count {
+	font-size: 35px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+	color: #515F61;
+}
+.glyphicon {
+
+	margin: 10px 5px;
+	float: right;
+	color: #42463C;
+	font-size: 25px !important;
+}
+
+#add-button {
+	margin: 5px 0px;
+}
+#activity-add-field{
+	width: 200px;
+}
+#count-add-field {
+	width: 100px;
+}
+#add-bar {
+	width: 100%;
+	padding: 0px 0px;
 }

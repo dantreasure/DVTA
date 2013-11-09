@@ -11,6 +11,18 @@ var path = require('path');
 
 var app = express();
 
+//mongo setup
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://dantreasure:y0y0mann@ds053798.mongolab.com:53798/dvta');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  console.log('Yay, you successfully connected to MongoLabs');
+});
+
+var TaskSchema = require('./models/Task.js').TaskSchema;
+var Task = db.model('tasks', TaskSchema);
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
