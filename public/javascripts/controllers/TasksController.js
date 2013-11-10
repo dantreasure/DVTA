@@ -17,4 +17,8 @@ var TasksController = function ($scope){
     $scope.new_name = '';
     $scope.new_count = '';
   };
+  $scope.remove = function (index){
+    $scope.tasks.splice(index, 1);
+    console.log('click');
+  };
 };

@@ -30,13 +30,15 @@ a {
 	color: #515F61;
 }
 .glyphicon {
-
 	margin: 10px 5px;
 	float: right;
 	color: #42463C;
 	font-size: 25px !important;
 }
-
+.glyphicon:hover{
+	color: black;
+	cursor: pointer;
+}
 #add-button {
 	margin: 5px 0px;
 }
