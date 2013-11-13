@@ -11,3 +11,5 @@ Clone the repo and run the following commands after CDing into the directory:
 
 * npm install
 * node app.js
+
+Go to localhost:3000
