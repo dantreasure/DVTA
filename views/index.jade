@@ -10,20 +10,20 @@ block content
 		div.top
 			h1(class="main_title") DATVM
 		hr
-		div(class="bottom" ng-controller="TasksController")
+		div(class="bottom" ng-controller="TasksController" ng-init="setTasks( #{JSON.stringify(tasks)})")
 			div(class="col-md-3" id="left-col")
 				div(class="input-group input-group-lg" id="search-bar")
 					input(type="search" class="form-control" placeholder ="Search" ng-model="selected" typeahead="task.name for task in tasks | filter:$viewValue | limitTo:8")
 			div(class="col-md-6" id="mid-col")
-				form(class="navbar-form navbar-left" role="search" id="add-bar")
+				form(novalidate, class="navbar-form navbar-left" role="search" id="add-bar" ng-submit="addTask()")
 					div(class="form-group")
-						input(type="text" class="form-control" placeholder="Activity" id="activity-add-field" ng-model="new_name")
-						input(type="text" class="form-control" placeholder="Count" id="count-add-field" ng-model="new_count")
+						input(type="text" class="form-control" placeholder="Activity" id="activity-add-field" ng-model="newTask.name")
+						input(type="text" class="form-control" placeholder="Count" id="count-add-field" ng-model="newTask.count")
 					button(type="submit" class="btn btn-default" ng-click="add()") Submit
 				div(ng-repeat="task in tasks | filter:selected")
 					span.task {{task.name}} 
 					span.count {{task.count}} 
-					span(class="glyphicon glyphicon-trash" ng-click="remove($index)")     
+					span(class="glyphicon glyphicon-trash" ng-click="remove(task)")     
 					span(class="glyphicon glyphicon-pencil")      
 					span(class="glyphicon glyphicon-signal")
 			div(class="col-md-3" id="right-col")

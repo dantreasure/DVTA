@@ -1,24 +1,35 @@
 angular.module('dvta', ['ui.bootstrap']);
-var TasksController = function ($scope){
+var TasksController = function ($scope, $http){
+  $scope.tasks = [];
   $scope.selected = undefined;
-  $scope.tasks = [
-    {name: "Deadlift", count: 43},
-    {name: "Pages Read", count: 421},
-    {name: "Hours Coding", count: 34},
-    {name: "Pullups", count: 32}, 
-    {name: "Cups of Water", count: 78},
-    {name: "Miles Driven", count: 2019}
-  ];
-  $scope.add = function (){
-    $scope.tasks.push({
-      name: $scope.new_name,
-      count: $scope.new_count
-    });
-    $scope.new_name = '';
-    $scope.new_count = '';
+  $scope.newTask = {
+    name : '',
+    count : ''
+  }
+
+  $scope.setTasks = function(tasks) {
+    $scope.tasks = tasks;
   };
-  $scope.remove = function (index){
-    $scope.tasks.splice(index, 1);
-    console.log('click');
+
+  $scope.remove = function (task){
+
+    $http.delete('/task/' + task._id + '.json', task).success(function(data){
+      if (!data.task) {
+        alert(JSON.stringify(data));
+      }  
+    })
+  };
+
+  $scope.addTask = function() {
+    $http.post('/task.json', $scope.newTask).success(function(data) {
+      if (data.task) {
+        $scope.tasks.push(data.task);
+        $scope.newTask.name = '';
+        $scope.newTask.count = '';
+      } 
+      else {
+        alert(JSON.stringify(data));
+      }
+    });
   };
 };

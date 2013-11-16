@@ -13,8 +13,9 @@ var app = express();
 
 //mongo setup
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://dantreasure:y0y0mann@ds053798.mongolab.com:53798/dvta');
-var db = mongoose.connection;
+// mongoose.connect('mongodb://dantreasure:y0y0mann@ds053798.mongolab.com:53798/dvta');
+// var db = mongoose.connection;
+var db = mongoose.createConnection('localhost', 'datvmtestdb');
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
   console.log('Yay, you successfully connected to MongoLabs');
@@ -22,6 +23,7 @@ db.once('open', function callback () {
 
 var TaskSchema = require('./models/Task.js').TaskSchema;
 var Task = db.model('tasks', TaskSchema);
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -39,8 +41,10 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/', routes.index(Task));
 app.get('/users', user.list);
+app.post('/task.json', routes.addTask(Task));
+app.delete('/task/:id.json', routes.remove(Task));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
